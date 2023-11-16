@@ -1,0 +1,21 @@
+{
+  "name": "metflics",
+  "version": "1.0.0",
+  "description": "non-streaming platform with movies info",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/Sanchez1492/metflics)"
+  },
+  "keywords": [
+    "javascript",
+    "html",
+    "css",
+    "movies"
+  ],
+  "author": "Sebastian Sanchez",
+  "license": "MIT"
+}
