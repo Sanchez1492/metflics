@@ -67,6 +67,28 @@ body {
     justify-content: space-between;
 }
 
+.img-container {
+    width: 120px;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+}
+
+.back-btn i {
+    color: var(--orange)
+}
+
+.inactive {
+    display: none;
+}
+
 /* -------- HEADER SECTION --------- */
 .header--container {
     display: flex;
@@ -112,7 +134,7 @@ body {
     cursor: pointer;
 }
 
-/* ---- MAIN SECTION ---- */
+/* ---- MAIN SECTION -- HOME PAGE ---- */
 
 .movie-poster__main {
     width: 70%;
@@ -146,7 +168,7 @@ body {
     font-size: 1rem;
 }
 
-/* ---- TRENDING MOVIES SECTION ---- */
+/* ---- TRENDING MOVIES SECTION -- HOME PAGE ---- */
 .trending-movies {
     overflow-x:scroll;
     overflow-y:hidden;
@@ -156,7 +178,7 @@ body {
     padding-bottom:16px
 }
 
-/* ---- GENRES SECTION ---- */
+/* ---- GENRES SECTION -- HOME PAGE ---- */
 .genres {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -166,4 +188,29 @@ body {
 .genre {
     list-style: none;
     color: var(--grey);
+}
+
+
+/* ---- GENRES SECTION ---- */
+.section--img_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    place-items: center;
+    gap: 1rem;
+}
+
+.genre--section_title {
+    margin-top: -35px;
+    margin-bottom: -5px;
+    display: flex;
+    align-items: center;
+    color: var(--orange);
+}
+
+.genre--section_title h3 {
+    font-size: 2rem;
+}
+
+.genre--section_title i {
+    font-size: 2rem;
 }
