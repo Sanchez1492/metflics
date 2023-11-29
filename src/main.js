@@ -18,7 +18,6 @@ async function getTrendingMoviesPreview() {
 
     const movies = data.results;
 
-    
     const mainMovie = document.querySelector('.main')
     
     const mainMovieImgContainer = Cr('div')
