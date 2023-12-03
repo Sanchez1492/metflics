@@ -37,7 +37,8 @@ body {
     color: var(--white);
 }
 
-.movie-poster {
+.movie-poster,
+.section--img_container {
     width: 120px;
     display:inline-block;
     margin-right:8px;
@@ -45,7 +46,8 @@ body {
     overflow: hidden;
 }
 
-.movie-poster img {
+.movie-poster img,
+.section--img_container img {
     width: 100%;
 }
 
@@ -103,11 +105,12 @@ body {
 
 .header--container .logo--container {
     width: 7rem;
+    font-family: 'Rancho', cursive;
+    font-size: 1.4rem;
+    color: red;
+    text-align: center;
 }
 
-.header--container .logo--container img {
-    width: 100%;
-}
 
 .search-box--container {
     display: flex;
@@ -129,9 +132,15 @@ body {
     font-family: var(--font-family);
 }
 
-.search-box--container .search-icon {
+.search-box--container .search-btn {
     padding-right: 0.5rem;
     cursor: pointer;
+    border: none;
+    background: none;
+}
+
+#search-box:focus {
+    outline: none;
 }
 
 /* ---- MAIN SECTION -- HOME PAGE ---- */
@@ -169,7 +178,11 @@ body {
 }
 
 /* ---- TRENDING MOVIES SECTION -- HOME PAGE ---- */
-.trending-movies {
+.trending-movies,
+.action-movies,
+.crime-movies,
+.horror-movies,
+.related-movies__container {
     overflow-x:scroll;
     overflow-y:hidden;
     white-space:nowrap;
@@ -181,8 +194,9 @@ body {
 /* ---- GENRES SECTION -- HOME PAGE ---- */
 .genres {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    place-items: center;
+    gap: 1rem;
 }
 
 .genre {
@@ -192,14 +206,16 @@ body {
 
 
 /* ---- GENRES SECTION ---- */
-.section--img_container {
+.genre--img_container,
+.search--img_container,
+.trending--img_container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     place-items: center;
     gap: 1rem;
 }
 
-.genre--section_title {
+.subsection-title {
     margin-top: -35px;
     margin-bottom: -5px;
     display: flex;
@@ -207,10 +223,33 @@ body {
     color: var(--orange);
 }
 
-.genre--section_title h3 {
+.subsection-title h3 {
+    font-size: 1.5rem;
+}
+
+.subsection-title i {
     font-size: 2rem;
 }
 
-.genre--section_title i {
-    font-size: 2rem;
+.movie-genres {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+    margin-top: 20px;
 }
+
+.movie-genres span,
+.genres span {
+    color: var(--white);
+    border: 2px solid var(--white);
+    border-radius: 3px;
+    padding: 5px
+}
+
+.subtitle {
+    color: var(--orange);
+    font-size: 1.2rem;
+}
+

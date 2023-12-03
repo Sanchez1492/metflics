@@ -10,7 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Rancho&display=swap" rel="stylesheet">
 
     <!-- ICON SCOUT CDN -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
@@ -20,14 +20,12 @@
 </head>
 <body>
     <header class="header--container" id="header">
-        <div class="logo--container">
-            <img src="./assets/logo.png" alt="Metflics logo">
-        </div>
+        <span class="logo--container">METFLICS</span>
         <div class="search-box--container">
-            <input type="text" name="" id="search-box" placeholder="The Avengers">
-            <a class="search-icon" href="">
+            <input type="text" name="" id="search-box" placeholder="Search movie...">
+            <button class="search-btn">
                 <i class="uil uil-search"></i>
-            </a>
+            </button>
         </div>
     </header>
     <div class="home-section">
@@ -37,7 +35,7 @@
         <section class="section trending">
             <div class="title-container">
                 <h2 class="section-title">Trending Movies</h2>
-                <button class="button">See more</button>
+                <button class="button" onclick="location.hash = '#trends'">See more</button>
             </div>
             <div class="trending-movies">
                 
@@ -47,7 +45,7 @@
         <section class="section action">
             <div class="title-container">
                 <h2 class="section-title">Action Movies</h2>
-                <button class="button">See more</button>
+                <button class="button" onclick="location.hash = '#genre=28-Action'">See more</button>
             </div>
             <div class="action-movies">
                 
@@ -57,19 +55,19 @@
         <section class="section crime">
             <div class="title-container">
                 <h2 class="section-title">Crime Movies</h2>
-                <button class="button">See more</button>
+                <button class="button" onclick="location.hash = '#genre=80-Crime'">See more</button>
             </div>
             <div class="crime-movies">
     
             </div>
         </section>
     
-        <section class="section war">
+        <section class="section horror">
             <div class="title-container">
-                <h2 class="section-title">War Movies</h2>
-                <button class="button">See more</button>
+                <h2 class="section-title">Horror Movies</h2>
+                <button class="button" onclick="location.hash = '#genre=27-Horror'">See more</button>
             </div>
-            <div class="war-movies">
+            <div class="horror-movies">
     
             </div>
         </section>
@@ -77,145 +75,80 @@
         <section class="section genres-container">
             <h2 class="section-title">More Genres</h2>
             <div>
-                <ul class="genres">
+                <div class="genres">
     
-                </ul>
+                </div>
             </div>
         </section>
     </div>
 
     <section class="genre-section section">
-        <div class="genre--section_title">
+        <div class="subsection-title">
             <button class="back-btn" onclick="location.hash = '#home'">
                 <i class="uil uil-angle-left"></i>
             </button>
-            <h3>Action</h3>
+            <h3 class="genre-section__title"></h3>
         </div>
-        <div class="section--img_container">
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
+        <div class="genre--img_container">
+
         </div>
     </section>
 
     <section class="search-section section">
-        <h3>Results for The Avengers</h3>
-        <div class="section--img_container">
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
+        <div class="subsection-title">
+            <button class="back-btn" onclick="location.hash = '#home'">
+                <i class="uil uil-angle-left"></i>
+            </button>
+            <h3 class="search-value--title">Results for The Avengers</h3>
+        </div>
+        <div class="search--img_container">
+            
         </div>
     </section>
 
-    <section class="trending-movies section">
-        <h3>Trending movies</h3>
-        <div class="section--img_container">
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
-            <div class="img-container">
-                <img src="./test.jpg" alt="">
-            </div>
+    <section class="trending-movies__list section">
+        <div class="subsection-title">
+            <button class="back-btn" onclick="location.hash = '#home'">
+                <i class="uil uil-angle-left"></i>
+            </button>
+            <h3>Trending movies</h3>
+        </div>
+        <div class="trending--img_container">
+            
         </div>
     </section>
-    <section class="movie-detail">
-        
+
+    <section class="movie-detail section">
+        <div class="subsection-title">
+            <button class="back-btn" onclick="location.hash = '#home'">
+                <i class="uil uil-angle-left"></i>
+            </button>
+            <h3 class="movie-detail__title"></h3>
+        </div>
+        <div class="movie-detail--info-container">
+            <div class="movie-poster__main">
+
+            </div>
+            <article class="movie-info">
+                <p class="movie-info__description">
+
+                </p>
+                <div class="votes-container">
+                    <i class="uil uil-star"></i>
+                    <span class="movie-info__votes"></span>
+                </div>
+                <div class="movie-genres">
+
+                </div>
+            </article>
+        </div>
+        <div class="related-movies">
+            <h4 class="subtitle">Related movies</h4>
+            <div class="related-movies__container">
+                
+            </div>
+        </div>
+
     </section>
     <!-- AXIOS -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -10,6 +10,39 @@ const api = axios.create({
 
 const Cr = (element) => document.createElement(element);
 
+//Helpers
+
+function createMovies(movies, container) {
+    movies.forEach(movie => {
+        const movieContainer = Cr('div')
+        movieContainer.classList = 'movie-poster'
+        movieContainer.addEventListener('click', () => {
+            location.hash = '#movie=' + movie.id
+        })
+    
+        const movieImg = Cr('img')
+        movieImg.setAttribute('alt', movie.original_title)
+        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path)
+    
+        container.appendChild(movieContainer)
+        movieContainer.appendChild(movieImg)
+    });
+}
+
+function createCategories(genres, container) {
+    genres.forEach(genre => {
+        const genreList = document.createElement('span')
+        genreList.classList = 'genre'
+        genreList.innerText = genre.name
+        genreList.addEventListener('click', () => {
+            location.hash = `#genre=${genre.id}-${genre.name}`
+        })
+
+
+        container.appendChild(genreList)
+    })
+}
+
 const API_URL = 'https://api.themoviedb.org/3/trending/movie/day?api_key='
 const API_KEY = '4a8c17d81315b168bae62a0dbe29bdf6'
 
@@ -63,32 +96,114 @@ async function getTrendingMoviesPreview() {
     // genreContainer.appendChild(mainMovieGenres)
     
     movies.shift()
-    movies.forEach(movie => {
-        const trendingContainer = document.querySelector('.trending-movies')
-        const movieContainer = Cr('div')
-        movieContainer.classList = 'movie-poster'
-    
-        const movieImg = Cr('img')
-        movieImg.setAttribute('alt', movie.original_title)
-        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path)
-    
-        trendingContainer.appendChild(movieContainer)
-        movieContainer.appendChild(movieImg)
-    });
+    createMovies(movies, trendingContainer)
+}
+
+async function getTrendingMovies() {
+    const { data } = await api('/trending/movie/day')
+
+    const movies = data.results;
+    createMovies(movies, trendingImgContainer)
 }
 
 async function getGenresPreview () {
     const { data } = await api('genre/movie/list')
     
     const genres = data.genres
-    genres.forEach(genre => {
-        const categoryContainer = document.querySelector('.genres')
-        const categoryList = document.createElement('li')
-        categoryList.classList = 'genre'
-        categoryList.innerText = genre.name
-
-        categoryContainer.appendChild(categoryList)
-    })
+    
+    createCategories(genres, genreContainer)
 
     console.log(genres);
+}
+
+async function getMoviesByGenre(id) {
+    const { data } = await api('/discover/movie?with_genres', {
+        params: {
+            with_genres: id,
+        }
+    })
+
+    const movies = data.results;
+    genreImgContainer.innerHTML = ""
+
+    movies.shift()
+    createMovies(movies, genreImgContainer)
+}
+
+async function getMoviesBySearch(query) {
+    const { data } = await api('/search/movie', {
+        params: {
+            query,
+        }
+    })
+
+    const movies = data.results;
+    searchImgContainer.innerHTML = ""
+    searchValueTitle.innerText = 'Results for ' + query;
+
+    createMovies(movies, searchImgContainer)
+}
+
+async function getActionMovies() {
+    const { data } = await api('/discover/movie?with_genres', {
+        params: {
+            with_genres: 28,
+        }
+    })
+
+    const movies = data.results;
+
+    createMovies(movies, actionContainer)
+}
+
+async function getCrimeMovies() {
+    const { data } = await api('/discover/movie?with_genres', {
+        params: {
+            with_genres: 80,
+        }
+    })
+
+    const movies = data.results;
+
+    createMovies(movies,crimeContainer)
+}
+
+async function getHorrorMovies() {
+    const { data } = await api('/discover/movie?with_genres', {
+        params: {
+            with_genres: 27,
+        }
+    })
+
+    const movies = data.results;
+
+    createMovies(movies, horrorContainer)
+}
+
+async function getMovieById(id) {
+    const { data: movie } = await api(`/movie/${id}`)
+    console.log(movie);
+    movieDetailTitle.innerText = movie.original_title
+    moviePosterContainer.innerHTML = ""
+    
+    const movieImg = Cr ('img');
+    movieImg.setAttribute('alt', movie.original_title)
+    movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path )
+
+    moviePosterContainer.appendChild(movieImg);
+
+    movieDescription.innerText = movie.overview
+    movieVotes.innerText = movie.vote_average
+
+    createCategories(movie.genres, movieDetailGenres)
+
+    getRelatedMoviesById(id)
+}
+
+async function getRelatedMoviesById(id) {
+    const { data } = await api(`/movie/${id}/similar`)
+    const movies = data.results
+    relatedMoviesContainer.innerHTML = ""
+
+    createMovies(movies, relatedMoviesContainer)
 }
