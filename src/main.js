@@ -33,7 +33,8 @@ function createCategories(genres, container) {
     genres.forEach(genre => {
         const genreList = document.createElement('span')
         genreList.classList = 'genre'
-        genreList.innerText = genre.name
+        const genreName = genre.name
+        genreList.innerText = genreName.replace(/%20/g, ' ');
         genreList.addEventListener('click', () => {
             location.hash = `#genre=${genre.id}-${genre.name}`
         })
@@ -126,7 +127,6 @@ async function getMoviesByGenre(id) {
     const movies = data.results;
     genreImgContainer.innerHTML = ""
 
-    movies.shift()
     createMovies(movies, genreImgContainer)
 }
 
@@ -137,11 +137,28 @@ async function getMoviesBySearch(query) {
         }
     })
 
-    const movies = data.results;
-    searchImgContainer.innerHTML = ""
-    searchValueTitle.innerText = 'Results for ' + query;
+    var decodeValue = decodeURIComponent(query)
 
-    createMovies(movies, searchImgContainer)
+    const movies = data.results;
+    if (query.length == 0) {
+        searchValueTitle.innerText = 'There are no results for an empty search'
+        body.style.height = '100vh';
+    } else if(movies.length == 0) {
+        searchImgContainer.innerHTML = ""
+        searchValueTitle.innerText = 'There are no results for ' + decodeValue
+
+        footer.style.position = 'fixed';
+        footer.style.bottom = '0';
+    } else {
+        searchImgContainer.innerHTML = ""
+        searchValueTitle.innerText = 'Results for ' + decodeValue;
+
+        body.style.height = '';
+        footer.style.position = '';
+        footer.style.bottom = '';
+    
+        createMovies(movies, searchImgContainer)
+    }
 }
 
 async function getActionMovies() {
@@ -185,6 +202,7 @@ async function getMovieById(id) {
     console.log(movie);
     movieDetailTitle.innerText = movie.original_title
     moviePosterContainer.innerHTML = ""
+    movieDetailGenres.innerHTML = ""
     
     const movieImg = Cr ('img');
     movieImg.setAttribute('alt', movie.original_title)
@@ -206,4 +224,6 @@ async function getRelatedMoviesById(id) {
     relatedMoviesContainer.innerHTML = ""
 
     createMovies(movies, relatedMoviesContainer)
+
+    relatedMoviesContainer.scrollTo(0, 0);
 }

@@ -1,4 +1,5 @@
 //Home
+const body = document.querySelector('body')
 const homeSection = document.querySelector('.home-section')
 const trendingContainer = document.querySelector('.trending-movies')
 const actionContainer = document.querySelector('.action-movies')
@@ -34,3 +35,6 @@ const movieDescription = document.querySelector('.movie-info__description')
 const movieVotes = document.querySelector('.movie-info__votes')
 const movieDetailGenres = document.querySelector('.movie-genres')
 const relatedMoviesContainer = document.querySelector('.related-movies__container')
+
+//footer
+const footer = document.querySelector('footer')
