@@ -13,6 +13,7 @@ const Cr = (element) => document.createElement(element);
 //Helpers
 
 function createMovies(movies, container) {
+    container.innerHTML = ""
     movies.forEach(movie => {
         const movieContainer = Cr('div')
         movieContainer.classList = 'movie-poster'
@@ -51,9 +52,9 @@ async function getTrendingMoviesPreview() {
     const { data } = await api('/trending/movie/day')
 
     const movies = data.results;
-
     const mainMovie = document.querySelector('.main')
-    
+    mainMovie.innerHTML = ""
+
     const mainMovieImgContainer = Cr('div')
     mainMovieImgContainer.classList = 'movie-poster__main'
     
