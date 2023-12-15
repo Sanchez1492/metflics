@@ -1,3 +1,7 @@
+let page = 1
+let maxPage;
+let infiniteScroll;
+
 logoContainer.addEventListener('click', () => {
     location.hash = '#home'
 })
@@ -14,8 +18,15 @@ searchBox.addEventListener("keydown", function(event) {
 
 window.addEventListener('DOMContentLoaded', navigator, false)
 window.addEventListener('hashchange', navigator, false)
+window.addEventListener('scroll', infiniteScroll, { passive: false })
 
 function navigator () {
+
+    if(infiniteScroll) {
+        window.removeEventListener('scroll', infiniteScroll, { passive: false })
+        infiniteScroll = undefined;
+    }
+
     if(location.hash.startsWith('#trends')) {
         trendingPage()
     } else if (location.hash.startsWith('#search=')) {
@@ -32,6 +43,10 @@ function navigator () {
     document.body.scrollTop = 0;
 
     searchBox.value = ""
+
+    if (infiniteScroll) {
+        window.addEventListener('scroll', infiniteScroll, { passive: false })
+    }
 }
 
 function homePage() {
@@ -58,6 +73,7 @@ function genrePage() {
     sectionTitle.innerHTML = genreName
     
     getMoviesByGenre(genreId);
+    infiniteScroll = getPaginatedMoviesByGenre(genreId);
 }
 
 function detailPage() {
@@ -82,6 +98,8 @@ function searchPage() {
 
     const [_, query] = location.hash.split('=')
     getMoviesBySearch(query)
+
+    infiniteScroll = getPaginatedMoviesBySearch(query)
 }
 
 function trendingPage() {
@@ -93,6 +111,7 @@ function trendingPage() {
     genreSection.classList.add('inactive')
 
     getTrendingMovies()
+    infiniteScroll = getPaginatedTrendingMovies
 }
 
 getGenresPreview()

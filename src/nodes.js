@@ -39,3 +39,4 @@ const relatedMoviesContainer = document.querySelector('.related-movies__containe
 
 //footer
 const footer = document.querySelector('footer')
+const maxPageMessage = document.querySelector('.max-page-msg')
