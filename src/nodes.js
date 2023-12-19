@@ -26,6 +26,9 @@ const searchValueTitle = document.querySelector('.search-value--title')
 const trendingSection = document.querySelector('.trending-movies__list')
 const trendingImgContainer = document.querySelector('.trending--img_container')
 
+//Favourite movies
+const favouriteMoviesImgContainer = document.querySelector('.liked-movies')
+
 //Movie Detail
 const movieDetailSection = document.querySelector('.movie-detail')
 const genericSection = document.querySelector('.section--img_container')

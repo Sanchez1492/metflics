@@ -48,18 +48,72 @@ body {
 
 .movie-poster,
 .section--img_container {
+    position: relative;
     width: 120px;
     height: 180px;
     display:inline-block;
     margin-right:8px;
     border-radius: 5px;
     overflow: hidden;
+    transition: 300ms;
 }
 
 .movie-poster img,
 .section--img_container img {
     width: 100%;
     height: 100%;
+}
+
+.empty-card {
+    width: 120px;
+    height: 180px;
+    display:inline-block;
+    margin-right:8px;
+    border-radius: 5px;
+    text-align: center;
+    transition: 300ms;
+    background: grey;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.empty-card p {
+    color: var(--white);
+    white-space: wrap; /* Evita el salto de línea */
+    overflow: hidden;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.like-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: var(--grey);
+}
+
+.like-btn::before {
+    content: '♥';
+    color: var(--white);
+    font-size: 20px;
+}
+
+.like-btn--liked {
+    background: var(--black);
+    box-shadow: 0px -1px 5px 2px var(--orange);
+    -webkit-box-shadow: 0px -1px 5px 2px var(--orange);
+    -moz-box-shadow: 0px -1px 5px 2px var(--orange);
+}
+
+.like-btn--liked::before {
+    color: var(--orange);
 }
 
 .button {
@@ -147,7 +201,7 @@ header {
 .header--container .logo--container {
     font-family: 'Rancho', cursive;
     font-size: 1.4rem;
-    color: red;
+    color: var(--orange);
     text-align: center;
     cursor: pointer;
     margin-bottom: 1rem;
@@ -501,11 +555,16 @@ footer i {
         font-size: 1rem;
     }
 
+    .empty-card,
     .movie-poster,
     .section--img_container {
         width: 140px;
         height: 210px;
         cursor: pointer;
+    }
+
+    .empty-card p {
+        font-size: 20px;
     }
 
     .home--poster-img__loading {
@@ -577,10 +636,15 @@ footer i {
         font-size: 1.1rem;
     }
 
+    .empty-card,
     .movie-poster,
     .section--img_container {
         width: 150px;
         height: 225px;
+    }
+
+    .empty-card p {
+        font-size: 22px;
     }
 
     .home--poster-img__loading {

@@ -56,6 +56,8 @@ function homePage() {
     trendingSection.classList.add('inactive');
     movieDetailSection.classList.add('inactive');
     homeSection.classList.remove('inactive');
+
+    getFavouriteMovies()
 }
 
 function genrePage() {
@@ -117,6 +119,5 @@ function trendingPage() {
 getGenresPreview()
 getTrendingMoviesPreview()
 getActionMovies()
-getCrimeMovies()
 getHorrorMovies()
 window.scrollTo(0, 0)

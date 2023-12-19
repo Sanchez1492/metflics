@@ -1,3 +1,5 @@
+//Data
+
 const api = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     headers: {
@@ -9,6 +11,34 @@ const api = axios.create({
 })
 
 const Cr = (element) => document.createElement(element);
+
+function likedMoviesList () {
+    const item = JSON.parse(localStorage.getItem('liked_movies'))
+    let movies;
+    
+
+    if (item) {
+        movies = item
+    } else {
+        movies = {}
+    }
+
+    return movies
+}
+
+function likeMovie(movie) {
+    const likedMovies = likedMoviesList();
+
+    console.log(likedMovies);
+
+    if(likedMovies[movie.id]) {
+        likedMovies[movie.id] = undefined;
+    } else {
+        likedMovies[movie.id] = movie;
+    }
+
+    localStorage.setItem('liked_movies',JSON.stringify(likedMovies))
+}
 
 //Helpers
 
@@ -28,14 +58,27 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
     movies.forEach(movie => {
         const movieContainer = Cr('div')
         movieContainer.classList = 'movie-poster'
-        movieContainer.addEventListener('click', () => {
-            location.hash = '#movie=' + movie.id
-        })
-    
+
         const movieImg = Cr('img')
         movieImg.setAttribute('alt', movie.original_title)
         movieImg.setAttribute(lazyLoad? 'data-img' : 'src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path)
+        movieImg.addEventListener('click', () => {
+            location.hash = '#movie=' + movie.id
+        })
     
+        const movieBtn = Cr ('button')
+
+        if(likedMoviesList()[movie.id]) {
+            movieBtn.classList.add('like-btn--liked')
+        }
+
+        movieBtn.classList.add('like-btn')
+        movieBtn.addEventListener('click', () => {
+            movieBtn.classList.toggle('like-btn--liked')
+            likeMovie(movie)
+            getFavouriteMovies()
+        })
+
         if(lazyLoad) {
             lazyLoader.observe(movieImg)
         }
@@ -46,6 +89,7 @@ function createMovies(movies, container, { lazyLoad = false, clean = true } = {}
         })
 
         container.appendChild(movieContainer)
+        movieContainer.appendChild(movieBtn)
         movieContainer.appendChild(movieImg)
     });
 }
@@ -117,7 +161,6 @@ async function getTrendingMoviesPreview() {
     // mainMovieInfoContainer.appendChild(genreContainer)
     // genreContainer.appendChild(mainMovieGenres)
     
-    movies.shift()
     createMovies(
         movies,
         trendingContainer,
@@ -333,24 +376,6 @@ async function getActionMovies() {
         })
 }
 
-async function getCrimeMovies() {
-    const { data } = await api('/discover/movie?with_genres', {
-        params: {
-            with_genres: 80,
-        }
-    })
-
-    const movies = data.results;
-
-    createMovies(
-        movies,
-        crimeContainer,
-        {
-            lazyLoad : true,
-            clean: true,
-        })
-}
-
 async function getHorrorMovies() {
     const { data } = await api('/discover/movie?with_genres', {
         params: {
@@ -410,4 +435,22 @@ async function getRelatedMoviesById(id) {
         })
 
     relatedMoviesContainer.scrollTo(0, 0);
+}
+
+function getFavouriteMovies () {
+    const likedMovies = likedMoviesList()
+    const moviesArray = Object.values(likedMovies)
+
+    if (moviesArray.length === 0) {
+        favouriteMoviesImgContainer.innerHTML = ""
+        const emptyCard = Cr ('div')
+        emptyCard.classList.add('empty-card')
+        const emptyCardText = Cr ('p')
+        emptyCardText.innerText = 'Click the ♥ in the movie poster to add it to favourites'
+        
+        emptyCard.appendChild(emptyCardText)
+        favouriteMoviesImgContainer.appendChild(emptyCard)
+    } else {
+        createMovies(moviesArray, favouriteMoviesImgContainer, { lazyLoad: true, clean: true})
+    }
 }
