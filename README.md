@@ -29,10 +29,10 @@ Metflics is your go-to destination for exploring movies, discovering information
 Metflics es tu destino ideal para explorar películas, descubrir información basada en categorías o géneros, y crear tu propia lista de favoritas. Ya seas un entusiasta del cine o simplemente estés buscando tu próxima película para ver, Metflics tiene todo lo que necesitas.
 
 # Características
-Navegación por Género: Explora películas convenientemente categorizadas por géneros, facilitando encontrar lo que estás buscando según tu estado de ánimo.
-Información Detallada de la Película: Obtén detalles completos sobre una película específica, incluyendo calificaciones, descripciones y géneros.
-Películas Relacionadas: Descubre otras películas relacionadas con una película específica, ampliando tu lista de películas para ver sin esfuerzo.
-Sección de Favoritos: ¿Te gusta una película? Haz clic en el botón "Like", y se guarda automáticamente en tu lista de favoritos para futuras referencias.
+1) Navegación por Género: Explora películas convenientemente categorizadas por géneros, facilitando encontrar lo que estás buscando según tu estado de ánimo.
+2) Información Detallada de la Película: Obtén detalles completos sobre una película específica, incluyendo calificaciones, descripciones y géneros.
+3) Películas Relacionadas: Descubre otras películas relacionadas con una película específica, ampliando tu lista de películas para ver sin esfuerzo.
+4) Sección de Favoritos: ¿Te gusta una película? Haz clic en el botón "Like", y se guarda automáticamente en tu lista de favoritos para futuras referencias.
 
 # Cómo Utilizar
 Visita el Sitio web de Metflics para comenzar a explorar películas.
